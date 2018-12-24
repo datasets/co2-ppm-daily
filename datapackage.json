@@ -1,0 +1,41 @@
+{
+  "bytes": 315454,
+  "count_of_rows": 16792,
+  "hash": "529dcf8061539900ce488bc0e9c72254",
+  "profile": "data-package",
+  "resources": [
+    {
+      "dialect": {
+        "caseSensitiveHeader": false,
+        "delimiter": ",",
+        "doubleQuote": true,
+        "header": true,
+        "lineTerminator": "\r\n",
+        "quoteChar": "\"",
+        "skipInitialSpace": false
+      },
+      "encoding": "utf-8",
+      "format": "csv",
+      "name": "co2-ppm-daily",
+      "path": "data/co2-ppm-daily.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          {
+            "format": "default",
+            "name": "date",
+            "type": "string"
+          },
+          {
+            "format": "default",
+            "name": "value",
+            "type": "string"
+          }
+        ],
+        "missingValues": [
+          ""
+        ]
+      }
+    }
+  ]
+}
