@@ -38,6 +38,9 @@ def get_data():
 
 
 def change_path(package: PackageWrapper):
+    # Add 'name' in descriptor:
+    package.pkg.descriptor['name'] = 'co2-ppm-daily'
+    # Change path and name for the resource:
     package.pkg.descriptor['resources'][0]['path'] = 'data/co2-ppm-daily.csv'
     package.pkg.descriptor['resources'][0]['name'] = 'co2-ppm-daily'
 
@@ -52,5 +55,3 @@ Flow(get_data(),
      change_path,
      dump_to_path('../'),
      printer()).process()
-
-

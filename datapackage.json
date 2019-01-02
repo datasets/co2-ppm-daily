@@ -1,8 +1,8 @@
 {
+  "bytes": 298830,
+  "count_of_rows": 16801,
+  "hash": "d4a352477bc91cf53060c69eb85670ce",
   "name": "co2-ppm-daily",
-  "bytes": 315454,
-  "count_of_rows": 16792,
-  "hash": "529dcf8061539900ce488bc0e9c72254",
   "profile": "data-package",
   "resources": [
     {
