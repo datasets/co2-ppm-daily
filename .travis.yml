@@ -8,8 +8,6 @@ script:
   - cd scripts/
   - python main.py
   - cd ..
-  - head -10 data/co2-ppm-daily.csv
-  - data validate
   - data push
 branches:
   only:
