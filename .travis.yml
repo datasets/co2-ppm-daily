@@ -2,8 +2,9 @@ language: python
 python:
   - "3.6"
 install:
-  - pip install -r requirements.txt
   - npm install -g data-cli
+  - pip install -r requirements.txt
 script:
   - python scripts/main.py
+after_script:
   - data push
