@@ -9,6 +9,3 @@ script:
   - python main.py
   - cd ..
   - data push
-branches:
-  only:
-  - master
