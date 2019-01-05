@@ -3,6 +3,7 @@ from dataflows import PackageWrapper, ResourceWrapper, Flow, dump_to_path, print
 
 
 def get_data():
+    print("entered into get_data()")
     header = True
     resource = urllib.request.urlopen(
         "ftp://aftp.cmdl.noaa.gov/data/trace_gases/co2/in-situ/surface/mlo/co2_mlo_surface-insitu_1_ccgg_DailyData.txt")
