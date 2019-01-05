@@ -23,6 +23,7 @@ def get_data():
     header = True
     resource = urllib.request.urlopen('https://www.esrl.noaa.gov/gmd/webdata/ccgg/trends/co2_mlo_weekly.csv')
     for row in resource.readlines():
+        print(row)
         usable_row = row.decode('utf-8').replace('\n', '')
         parts = usable_row.split(',')
         if header:
