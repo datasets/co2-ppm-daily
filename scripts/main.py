@@ -44,6 +44,23 @@ def change_path(package: PackageWrapper):
     package.pkg.descriptor['resources'][0]['path'] = 'data/co2-ppm-daily.csv'
     package.pkg.descriptor['resources'][0]['name'] = 'co2-ppm-daily'
 
+    package.pkg.descriptor['views'] = []
+    view = {
+        "name": "graph",
+        "title": "Trends in Atmospheric Carbon Dioxide",
+        "resources": ["co2-ppm-daily"],
+        "specType": "simple",
+        "spec": {
+            "type": "lines-and-points",
+            "group": "Date",
+            "series": [
+                "Interpolated",
+                "Trend"
+            ]
+        }
+    }
+    package.pkg.descriptor['views'].append(view)
+
     yield package.pkg
     res_iter = iter(package)
     first: ResourceWrapper = next(res_iter)
