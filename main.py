@@ -7,7 +7,9 @@ def get_data():
     header = True
     resource = urllib.request.urlopen(
         "ftp://aftp.cmdl.noaa.gov/data/trace_gases/co2/in-situ/surface/mlo/co2_mlo_surface-insitu_1_ccgg_DailyData.txt")
+    print(resource)
     for row in resource.readlines():
+        print(row)
         usable_row = row.decode('utf-8').replace('\n', '')
         if not usable_row.startswith('#'):
             parts = usable_row.split(' ')
