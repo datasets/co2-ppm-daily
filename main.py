@@ -70,5 +70,5 @@ def change_path(package: PackageWrapper):
 
 Flow(get_data(),
      change_path,
-     dump_to_path('../'),
+     dump_to_path(),
      printer()).process()
