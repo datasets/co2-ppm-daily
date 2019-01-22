@@ -1,6 +1,6 @@
-oil-prices-flow:
+co2-ppm-daily-flow:
   pipeline:
-    - flow: main.py
+    - flow: co2-ppm-daily-flow.py
     - run: datahub.dump.to_datahub
   schedule:
 crontab: */10 * * * *

@@ -3,13 +3,10 @@ from dataflows import PackageWrapper, ResourceWrapper, Flow, dump_to_path, print
 
 
 def get_data():
-    print("entered into get_data()")
     header = True
     resource = urllib.request.urlopen(
         "ftp://aftp.cmdl.noaa.gov/data/trace_gases/co2/in-situ/surface/mlo/co2_mlo_surface-insitu_1_ccgg_DailyData.txt")
-    print(resource)
     for row in resource.readlines():
-        print(row)
         usable_row = row.decode('utf-8').replace('\n', '')
         if not usable_row.startswith('#'):
             parts = usable_row.split(' ')
@@ -26,7 +23,6 @@ def get_data():
     header = True
     resource = urllib.request.urlopen('https://www.esrl.noaa.gov/gmd/webdata/ccgg/trends/co2_mlo_weekly.csv')
     for row in resource.readlines():
-        print(row)
         usable_row = row.decode('utf-8').replace('\n', '')
         parts = usable_row.split(',')
         if header:
@@ -43,6 +39,7 @@ def get_data():
 
 def change_path(package: PackageWrapper):
     # Add 'name' in descriptor:
+    package.pkg.descriptor['title'] = 'CO2 PPM - Trends in Atmospheric Carbon Dioxide'
     package.pkg.descriptor['name'] = 'co2-ppm-daily'
     # Change path and name for the resource:
     package.pkg.descriptor['resources'][0]['path'] = 'data/co2-ppm-daily.csv'
