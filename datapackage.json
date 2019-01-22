@@ -1,7 +1,7 @@
 {
-  "bytes": 298830,
-  "count_of_rows": 16801,
-  "hash": "d4a352477bc91cf53060c69eb85670ce",
+  "bytes": 299190,
+  "count_of_rows": 16821,
+  "hash": "c3ec202b1dab3d1b12fbdec0eeb92a13",
   "name": "co2-ppm-daily",
   "profile": "data-package",
   "resources": [
@@ -37,6 +37,24 @@
           ""
         ]
       }
+    }
+  ],
+  "views": [
+    {
+      "name": "graph",
+      "resources": [
+        "co2-ppm-daily"
+      ],
+      "spec": {
+        "group": "Date",
+        "series": [
+          "Interpolated",
+          "Trend"
+        ],
+        "type": "lines-and-points"
+      },
+      "specType": "simple",
+      "title": "Trends in Atmospheric Carbon Dioxide"
     }
   ]
 }

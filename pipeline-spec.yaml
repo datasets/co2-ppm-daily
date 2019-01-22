@@ -1,0 +1,6 @@
+oil-prices-flow:
+  pipeline:
+    - flow: main.py
+    - run: datahub.dump.to_datahub
+  schedule:
+crontab: */10 * * * *

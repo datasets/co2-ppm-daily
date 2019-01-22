@@ -3,10 +3,13 @@ from dataflows import PackageWrapper, ResourceWrapper, Flow, dump_to_path, print
 
 
 def get_data():
+    print("entered into get_data()")
     header = True
     resource = urllib.request.urlopen(
         "ftp://aftp.cmdl.noaa.gov/data/trace_gases/co2/in-situ/surface/mlo/co2_mlo_surface-insitu_1_ccgg_DailyData.txt")
+    print(resource)
     for row in resource.readlines():
+        print(row)
         usable_row = row.decode('utf-8').replace('\n', '')
         if not usable_row.startswith('#'):
             parts = usable_row.split(' ')
@@ -23,6 +26,7 @@ def get_data():
     header = True
     resource = urllib.request.urlopen('https://www.esrl.noaa.gov/gmd/webdata/ccgg/trends/co2_mlo_weekly.csv')
     for row in resource.readlines():
+        print(row)
         usable_row = row.decode('utf-8').replace('\n', '')
         parts = usable_row.split(',')
         if header:
@@ -44,6 +48,23 @@ def change_path(package: PackageWrapper):
     package.pkg.descriptor['resources'][0]['path'] = 'data/co2-ppm-daily.csv'
     package.pkg.descriptor['resources'][0]['name'] = 'co2-ppm-daily'
 
+    package.pkg.descriptor['views'] = []
+    view = {
+        "name": "graph",
+        "title": "Trends in Atmospheric Carbon Dioxide",
+        "resources": ["co2-ppm-daily"],
+        "specType": "simple",
+        "spec": {
+            "type": "lines-and-points",
+            "group": "Date",
+            "series": [
+                "Interpolated",
+                "Trend"
+            ]
+        }
+    }
+    package.pkg.descriptor['views'].append(view)
+
     yield package.pkg
     res_iter = iter(package)
     first: ResourceWrapper = next(res_iter)
@@ -53,5 +74,5 @@ def change_path(package: PackageWrapper):
 
 Flow(get_data(),
      change_path,
-     dump_to_path('../'),
+     dump_to_path(),
      printer()).process()
