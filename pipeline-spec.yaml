@@ -3,4 +3,4 @@ co2-ppm-daily-flow:
     - flow: co2-ppm-daily-flow.py
     - run: datahub.dump.to_datahub
   schedule:
-crontab: */10 * * * *
+    crontab: 59 23 * * *
