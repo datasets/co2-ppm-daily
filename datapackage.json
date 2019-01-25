@@ -47,10 +47,9 @@
         "co2-ppm-daily"
       ],
       "spec": {
-        "group": "Date",
+        "group": "date",
         "series": [
-          "Interpolated",
-          "Trend"
+          "value"
         ],
         "type": "lines-and-points"
       },
