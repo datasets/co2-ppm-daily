@@ -53,10 +53,9 @@ def change_path(package: PackageWrapper):
         "specType": "simple",
         "spec": {
             "type": "lines-and-points",
-            "group": "Date",
+            "group": "date",
             "series": [
-                "Interpolated",
-                "Trend"
+                "value"
             ]
         }
     }
