@@ -1,15 +1,21 @@
-## CO2 emission changing on daily level
-
 This dataset was created using data from [Earth System Research Laboratory](https://www.esrl.noaa.gov/).
+This data contains Atmospheric Carbon Dioxide Dry Air Mole Fractions from quasi-continuous daily measurements at Mauna Loa, Hawaii.
+
 
 ### Preparation
 
 To generate output file you should only run the script on location:
-`scripts/main.py`
+`co2-ppm-daily-flow.py`
 
 ### Data
+
+Data has been scraped from two different sources:
+* First source contains values from 01.01.1973 to 31.12.2017.
+* Another source contains values until today. 
+
 Output file is located in: `data/co2-ppm-daily.csv`
 
+Value represents Mole fraction reported in units of micromol mol-1 (10-6 mol per mol of dry air); equivalent to ppm (parts per million).
 
 ## License
 

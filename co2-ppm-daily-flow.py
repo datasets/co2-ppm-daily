@@ -3,6 +3,7 @@ from dataflows import PackageWrapper, ResourceWrapper, Flow, dump_to_path, print
 
 
 def get_data():
+    # first source containing info from 01.01.1973 - 31.12.2017
     header = True
     resource = urllib.request.urlopen(
         "ftp://aftp.cmdl.noaa.gov/data/trace_gases/co2/in-situ/surface/mlo/co2_mlo_surface-insitu_1_ccgg_DailyData.txt")
@@ -21,6 +22,7 @@ def get_data():
                         value=value
                     )
 
+    # second source containing info until today
     header = True
     resource = urllib.request.urlopen('https://www.esrl.noaa.gov/gmd/webdata/ccgg/trends/co2_mlo_weekly.csv')
     for row in resource.readlines():
