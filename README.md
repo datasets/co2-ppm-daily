@@ -4,7 +4,7 @@ This data contains Atmospheric Carbon Dioxide Dry Air Mole Fractions from quasi-
 
 ### Preparation
 
-To generate output file you should only run the script on location:
+To generate output file you should only run the script:
 `co2-ppm-daily-flow.py`
 
 ### Data
