@@ -14,11 +14,12 @@ def get_data():
                 header = False
             else:
                 date = parts[1] + '-' + f"{int(parts[2]):02d}" + '-' + f"{int(parts[3]):02d}"
-                value = '' if '-999.99' in parts[7] else parts[7]
-                yield dict(
-                    date=date,
-                    value=value
-                )
+                value = None if '-999.99' in parts[7] else parts[7]
+                if value is not None:
+                    yield dict(
+                        date=date,
+                        value=value
+                    )
 
     header = True
     resource = urllib.request.urlopen('https://www.esrl.noaa.gov/gmd/webdata/ccgg/trends/co2_mlo_weekly.csv')
@@ -30,7 +31,7 @@ def get_data():
         else:
             date = parts[0]
             value = parts[1]
-            if "2017-" not in date:
+            if ("2017-" not in date) and (value is not ''):
                 yield dict(
                     date=date,
                     value=value
@@ -38,10 +39,10 @@ def get_data():
 
 
 def change_path(package: PackageWrapper):
-    # Add 'name' in descriptor:
+
     package.pkg.descriptor['title'] = 'CO2 PPM - Trends in Atmospheric Carbon Dioxide'
     package.pkg.descriptor['name'] = 'co2-ppm-daily'
-    # Change path and name for the resource:
+
     package.pkg.descriptor['resources'][0]['path'] = 'data/co2-ppm-daily.csv'
     package.pkg.descriptor['resources'][0]['name'] = 'co2-ppm-daily'
 
@@ -70,5 +71,4 @@ def change_path(package: PackageWrapper):
 
 Flow(get_data(),
      change_path,
-     dump_to_path(),
-     printer()).process()
+     dump_to_path()).process()
