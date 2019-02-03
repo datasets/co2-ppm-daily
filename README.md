@@ -5,13 +5,13 @@ This data contains Atmospheric Carbon Dioxide Dry Air Mole Fractions from quasi-
 ### Preparation
 
 To generate output file you should only run the script:
-`co2-ppm-daily-flow.py`
+`co2-ppm-daily_flow.py`
 
 ### Data
 
 Data has been scraped from two different sources:
 * First source contains values from 01.01.1973 to 31.12.2017.
-* Another source contains values until today. 
+* Another source contains values until today.
 
 Output file is located in: `data/co2-ppm-daily.csv`
 
