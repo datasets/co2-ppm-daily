@@ -1,6 +1,6 @@
 co2-ppm-daily-flow:
   pipeline:
-    - flow: co2-ppm-daily_flow
+    - flow: co2-ppm-daily-flow
     - run: datahub.dump.to_datahub
   schedule:
-    crontab: 40 * * * *
+    crontab: 10 * * * *

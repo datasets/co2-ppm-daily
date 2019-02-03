@@ -71,6 +71,8 @@ def change_path(package: PackageWrapper):
     yield from package
 
 
-Flow(get_data(),
-     change_path,
-     dump_to_path()).process()
+co2_ppm_daily = Flow(get_data(), change_path, dump_to_path())
+
+
+if __name__ == '__main__':
+    co2_ppm_daily.process()
