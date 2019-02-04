@@ -50,16 +50,129 @@ def change_path(package: PackageWrapper):
 
     package.pkg.descriptor['views'] = []
     view = {
-        "name": "graph",
-        "title": "Trends in Atmospheric Carbon Dioxide",
-        "resources": ["co2-ppm-daily"],
-        "specType": "simple",
+        "specType": "vega",
+        "resources": [
+          {
+            "name": "co2-ppm-daily",
+            "transform": []
+          }
+        ],
         "spec": {
-            "type": "lines-and-points",
-            "group": "date",
-            "series": [
-                "value"
-            ]
+          "$schema": "https://vega.github.io/schema/vega/v3.json",
+          "width": 900,
+          "height": 400,
+          "padding": 30,
+          "data": [
+            {
+              "name": "co2-ppm-daily",
+              "format": {"parse": {"date": "date"}},
+              "transform": [
+                {"type": "extent", "field": "value", "signal": "extent"}
+              ]
+            }
+          ],
+
+          "scales": [
+            {
+              "name": "xscale",
+              "type": "utc",
+              "range": "width",
+              "domain": {"data": "co2-ppm-daily", "field": "date"}
+            },
+            {
+              "name": "yscale",
+              "type": "linear",
+              "range": "height",
+              "nice": True,
+              "zero": False,
+              "domain": {"data": "co2-ppm-daily", "field": "value"}
+            }
+          ],
+
+          "axes": [
+            {
+              "orient": "bottom",
+              "scale": "xscale",
+              "labelFont": "Lato",
+              "format": "%b %Y",
+              "domain": False,
+              "ticks": False
+            }
+          ],
+
+          "marks": [
+            {
+              "type": "area",
+              "from": {"data": "co2-ppm-daily"},
+              "encode": {
+                "enter": {
+                  "x": {"scale": "xscale", "field": "date"},
+                  "y": {"scale": "yscale", "field": "value"},
+                  "y2": {"scale": "yscale", "signal": "floor(extent[0])"},
+                  "fill": {"value": "#FBE7E8"},
+                  "stroke": {"value": "#E3B3BD"}
+                }
+              }
+            },
+            {
+              "type": "text",
+              "encode": {
+                "enter": {
+                  "text": {"signal": "extent[1] + ' PPM'"}
+                },
+                "update": {
+                  "x": {"value": -94},
+                  "font": {"value": "Lato"},
+                  "fontSize": {"value": 16},
+                  "opacity": {"value": 0.4}
+                }
+              }
+            },
+            {
+              "type": "text",
+              "encode": {
+                "enter": {
+                  "text": {"signal": "extent[0] + ' PPM'"}
+                },
+                "update": {
+                  "x": {"value": -94},
+                  "y": {"value": 385},
+                  "font": {"value": "Lato"},
+                  "fontSize": {"value": 16},
+                  "opacity": {"value": 0.4}
+                }
+              }
+            },
+            {
+              "type": "text",
+              "encode": {
+                "enter": {
+                  "text": {"signal": "extent[1] + ' PPM'"}
+                },
+                "update": {
+                  "x": {"value": 910},
+                  "font": {"value": "Lato"},
+                  "fontSize": {"value": 16},
+                  "opacity": {"value": 0.4}
+                }
+              }
+            },
+            {
+              "type": "text",
+              "encode": {
+                "enter": {
+                  "text": {"signal": "extent[0] + ' PPM'"}
+                },
+                "update": {
+                  "x": {"value": 910},
+                  "y": {"value": 385},
+                  "font": {"value": "Lato"},
+                  "fontSize": {"value": 16},
+                  "opacity": {"value": 0.4}
+                }
+              }
+            }
+          ]
         }
     }
     package.pkg.descriptor['views'].append(view)
