@@ -73,6 +73,8 @@ def change_path(package: PackageWrapper):
 
 co2_ppm_daily = Flow(get_data(), change_path, dump_to_path())
 
+def flow(parameters, datapackage, resources, stats):
+    return co2_ppm_daily
 
 if __name__ == '__main__':
     co2_ppm_daily.process()
