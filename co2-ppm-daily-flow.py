@@ -1,13 +1,13 @@
 import urllib.request
-from dataflows import PackageWrapper, ResourceWrapper, Flow, dump_to_path, printer
+from dataflows import PackageWrapper, ResourceWrapper, Flow, dump_to_path
 
 
 def get_data():
     # first source containing info from 01.01.1973 - 31.12.2017
     header = True
-    resource = urllib.request.urlopen(
-        "ftp://aftp.cmdl.noaa.gov/data/trace_gases/co2/in-situ/surface/mlo/co2_mlo_surface-insitu_1_ccgg_DailyData.txt",
-        timeout=600)
+    req = urllib.request.Request('ftp://aftp.cmdl.noaa.gov/data/trace_gases/co2/in-situ/surface/mlo/'
+                                 'co2_mlo_surface-insitu_1_ccgg_DailyData.txt')
+    resource = urllib.request.urlopen(req, timeout=10000)
     for row in resource.readlines():
         usable_row = row.decode('utf-8').replace('\n', '')
         if not usable_row.startswith('#'):
@@ -187,8 +187,6 @@ def change_path(package: PackageWrapper):
 
 co2_ppm_daily = Flow(get_data(), change_path, dump_to_path())
 
-def flow(parameters, datapackage, resources, stats):
-    return co2_ppm_daily
 
 if __name__ == '__main__':
     co2_ppm_daily.process()
