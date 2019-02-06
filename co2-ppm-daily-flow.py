@@ -6,7 +6,8 @@ def get_data():
     # first source containing info from 01.01.1973 - 31.12.2017
     header = True
     resource = urllib.request.urlopen(
-        "ftp://aftp.cmdl.noaa.gov/data/trace_gases/co2/in-situ/surface/mlo/co2_mlo_surface-insitu_1_ccgg_DailyData.txt")
+        "ftp://aftp.cmdl.noaa.gov/data/trace_gases/co2/in-situ/surface/mlo/co2_mlo_surface-insitu_1_ccgg_DailyData.txt",
+        timeout=600)
     for row in resource.readlines():
         usable_row = row.decode('utf-8').replace('\n', '')
         if not usable_row.startswith('#'):
