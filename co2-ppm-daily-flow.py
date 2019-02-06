@@ -7,7 +7,8 @@ def get_data():
     all_years = {}
     # first source containing info from 01.01.1958 to 2004
     header = True
-    resource = urllib.request.urlopen('http://scrippsco2.ucsd.edu/assets/data/atmospheric/stations/in_situ_co2/daily/daily_in_situ_co2_mlo.csv')
+    resource = urllib.request.urlopen('http://scrippsco2.ucsd.edu/assets/data/atmospheric/stations/in_situ_co2/daily/'
+                                      'daily_in_situ_co2_mlo.csv')
     for row in resource.readlines():
         usable_row = row.decode('utf-8').replace('\n', '')
         parts = usable_row.split(',')
