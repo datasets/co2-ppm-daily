@@ -10,8 +10,11 @@ To generate output file you should only run the script:
 ### Data
 
 Data has been scraped from two different sources:
-* First source contains values from 01.01.1973 to 31.12.2017.
-* Another source contains values until today.
+* First source contains values from 01.01.1958 to 31.12.2004
+* Second source contains values from 01.01.1973 to 31.12.2017.
+* Third source contains values until today.
+
+Since there is a lot of overlapping between the sources, output file is created in a way that all existing values are included.
 
 Output file is located in: `data/co2-ppm-daily.csv`
 
