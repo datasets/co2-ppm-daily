@@ -26,7 +26,8 @@ def get_data():
     header = True
     req = urllib.request.Request('ftp://aftp.cmdl.noaa.gov/data/trace_gases/co2/in-situ/surface/mlo/'
                                  'co2_mlo_surface-insitu_1_ccgg_DailyData.txt')
-    req.add_header('User-agent', 'Mozilla/5.0 (Linux i686)')
+
+    req.add_header('User-agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36')
     resource = urllib.request.urlopen(req, timeout=60)
     for row in resource.readlines():
         usable_row = row.decode('utf-8').replace('\n', '')
