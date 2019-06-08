@@ -1,8 +1,6 @@
 import datetime
-import os
 import urllib.request
 
-import wget as wget
 from dataflows import PackageWrapper, ResourceWrapper, Flow, dump_to_path
 
 
