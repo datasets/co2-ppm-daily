@@ -1,5 +1,8 @@
 import datetime
+import os
 import urllib.request
+
+import wget as wget
 from dataflows import PackageWrapper, ResourceWrapper, Flow, dump_to_path
 
 
@@ -23,14 +26,12 @@ def get_data():
                 all_years[date] = value
 
     # second source containing info from 01.01.1973 - 31.12.2017
-    header = True
-    req = urllib.request.Request('ftp://aftp.cmdl.noaa.gov/data/trace_gases/co2/in-situ/surface/mlo/'
-                                 'co2_mlo_surface-insitu_1_ccgg_DailyData.txt')
+    link = 'ftp://aftp.cmdl.noaa.gov/data/trace_gases/co2/in-situ/surface/mlo/co2_mlo_surface-insitu_1_ccgg_DailyData.txt'
+    wgetOutputFileName = wget.download(link)
 
-    req.add_header('User-agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36')
-    resource = urllib.request.urlopen(req, timeout=60)
-    for row in resource.readlines():
-        usable_row = row.decode('utf-8').replace('\n', '')
+    header = True
+    for row in open(wgetOutputFileName).readlines():
+        usable_row = row.replace('\n', '')
         if not usable_row.startswith('#'):
             parts = usable_row.split(' ')
             if header:
@@ -42,6 +43,7 @@ def get_data():
                     date = datetime.datetime.strptime(date, '%Y-%m-%d')
                     all_years[date] = value
 
+    os.remove(wgetOutputFileName)
     # third source containing info from 2017 until today
     header = True
     resource = urllib.request.urlopen('https://www.esrl.noaa.gov/gmd/webdata/ccgg/trends/co2_mlo_weekly.csv')
