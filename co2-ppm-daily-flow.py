@@ -242,3 +242,6 @@ else:
 
 if __name__ == '__main__':
     co2_ppm_daily.process()
+
+for row in open('data/co2-ppm-daily.csv'):
+    print(row)
