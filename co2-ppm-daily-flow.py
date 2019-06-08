@@ -26,12 +26,13 @@ def get_data():
                 all_years[date] = value
 
     # second source containing info from 01.01.1973 - 31.12.2017
-    link = 'ftp://aftp.cmdl.noaa.gov/data/trace_gases/co2/in-situ/surface/mlo/co2_mlo_surface-insitu_1_ccgg_DailyData.txt'
-    wgetOutputFileName = wget.download(link)
-
     header = True
-    for row in open(wgetOutputFileName).readlines():
-        usable_row = row.replace('\n', '')
+    req = urllib.request.Request('ftp://aftp.cmdl.noaa.gov/data/trace_gases/co2/in-situ/surface/mlo/'
+                                 'co2_mlo_surface-insitu_1_ccgg_DailyData.txt')
+
+    resource = urllib.request.urlopen(req, timeout=7200)
+    for row in resource.readlines():
+        usable_row = row.decode('utf-8').replace('\n', '')
         if not usable_row.startswith('#'):
             parts = usable_row.split(' ')
             if header:
@@ -43,7 +44,6 @@ def get_data():
                     date = datetime.datetime.strptime(date, '%Y-%m-%d')
                     all_years[date] = value
 
-    os.remove(wgetOutputFileName)
     # third source containing info from 2017 until today
     header = True
     resource = urllib.request.urlopen('https://www.esrl.noaa.gov/gmd/webdata/ccgg/trends/co2_mlo_weekly.csv')
