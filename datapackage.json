@@ -25,12 +25,12 @@
           {
             "format": "default",
             "name": "date",
-            "type": "string"
+            "type": "date"
           },
           {
             "format": "default",
             "name": "value",
-            "type": "string"
+            "type": "number"
           }
         ],
         "missingValues": [
