@@ -46,7 +46,7 @@
       "resources": ["co2-ppm-daily"],
       "specType": "simple",
       "spec": {
-        "type": "bar",
+        "type": "line",
         "group": "date",
         "series": ["value"]
       }
