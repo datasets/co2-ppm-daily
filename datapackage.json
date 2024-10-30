@@ -42,12 +42,8 @@
   "title": "CO2 PPM - Trends in Atmospheric Carbon Dioxide",
   "views": [
     {
-      "resources": [
-        {
-          "name": "co2-ppm-daily",
-          "transform": []
-        }
-      ],
+      "name": "CO2 PPM Daily",
+      "resources": ["co2-ppm-daily"],
       "specType": "simple",
       "spec": {
         "type": "bar",
