@@ -1,0 +1,2 @@
+dataflows==0.5.7
+requests==2.32.3
