@@ -1,4 +1,4 @@
-name: Automated geoip2-ipv4 update
+name: Automated co2-ppm-daily update
 
 on:
   schedule:
