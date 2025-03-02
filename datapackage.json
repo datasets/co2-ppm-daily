@@ -1,12 +1,12 @@
 {
-  "bytes": 375975,
-  "count_of_rows": 19844,
-  "hash": "22e28ce1d021a5c88c0f738287c734b8",
+  "bytes": 375994,
+  "count_of_rows": 19845,
+  "hash": "908a23257843ce4d642c7fcd45a8a893",
   "name": "co2-ppm-daily",
   "profile": "data-package",
   "resources": [
     {
-      "bytes": 375975,
+      "bytes": 375994,
       "dialect": {
         "caseSensitiveHeader": false,
         "delimiter": ",",
@@ -18,7 +18,7 @@
       },
       "encoding": "utf-8",
       "format": "csv",
-      "hash": "3e2fee5fef697998a6e8be40e7dcdb9a",
+      "hash": "c5722d2f674059f21bfa4254387a6841",
       "name": "co2-ppm-daily",
       "path": "data/co2-ppm-daily.csv",
       "profile": "tabular-data-resource",
