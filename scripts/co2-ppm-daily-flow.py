@@ -12,9 +12,6 @@ def get_all_data():
     resource = urllib.request.urlopen('http://scrippsco2.ucsd.edu/assets/data/atmospheric/stations/in_situ_co2/daily/'
                                       'daily_in_situ_co2_mlo.csv')
     for row in resource.readlines():
-        # Stop at 1974
-        if '1974' in row.decode('utf-8'):
-            break
         usable_row = row.decode('utf-8').replace('\n', '')
         parts = usable_row.split(',')
         if not usable_row.startswith('%'):
@@ -26,41 +23,6 @@ def get_all_data():
             if 'NaN' not in value:
                 date = datetime.datetime.strptime(date, '%Y-%m-%d')
                 all_years[date] = value
-
-
-def get_only_2018_and_on():
-    all_years = {}
-
-    header = True
-    for row in open('data/co2-ppm-daily.csv'):
-        usable_row = row.replace('\n', '')
-        parts = usable_row.split(',')
-        if header:
-            header = False
-        else:
-            date = parts[0]
-            value = parts[1]
-            if value is not '':
-                date = datetime.datetime.strptime(date, '%Y-%m-%d')
-                all_years[date] = value
-
-    # third source containing info from 1974 until today
-    header = True
-    resource = urllib.request.urlopen(
-        'https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_weekly_mlo.csv')
-    # Skip 35 lines
-    for row in resource.readlines()[36:]:
-        parts = row.decode('utf-8').strip().split(',')
-        year, month, day, _, value = parts[:5]
-        date_obj = datetime.datetime(int(year), int(month), int(day))
-        all_years[date_obj] = value
-    all_years = sorted(all_years.items())
-    for date, value in all_years:
-        yield dict(
-            date=date.strftime("%Y-%m-%d"),
-            value=value
-        )
-
 
 def change_path(package: PackageWrapper):
 
@@ -205,12 +167,6 @@ def change_path(package: PackageWrapper):
     yield first.it
     yield from package
 
-
-if os.path.exists('data/co2-ppm-daily.csv'):
-    co2_ppm_daily = Flow(get_only_2018_and_on(), change_path, dump_to_path())
-else:
-    co2_ppm_daily = Flow(get_all_data(), change_path, dump_to_path())
-
-
 if __name__ == '__main__':
+    co2_ppm_daily = Flow(get_all_data(), change_path, dump_to_path())
     co2_ppm_daily.process()
