@@ -6,7 +6,6 @@
   "profile": "data-package",
   "resources": [
     {
-      "bytes": 375994,
       "dialect": {
         "caseSensitiveHeader": false,
         "delimiter": ",",
@@ -18,21 +17,18 @@
       },
       "encoding": "utf-8",
       "format": "csv",
-      "hash": "c5722d2f674059f21bfa4254387a6841",
       "name": "co2-ppm-daily",
       "path": "data/co2-ppm-daily.csv",
       "profile": "tabular-data-resource",
       "schema": {
         "fields": [
           {
-            "format": "default",
             "name": "date",
-            "type": "string"
+            "type": "date"
           },
           {
-            "format": "default",
             "name": "value",
-            "type": "string"
+            "type": "number"
           }
         ],
         "missingValues": [
